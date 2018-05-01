@@ -25,6 +25,7 @@ Complete the `Graph` class, either as an adjacency list or adjacency matrix, per
 > - You'll be tempted to push the project off for the end, or give certain group members monolithic parts (someone build the Graph, someone build the GUI, etc.).  **DON'T!**  Embrace the agile development process! Plan in Sprint 0, build a working product by the end of Sprint 1 and Sprint 2.
 > - Trouble splitting up the UML/sequence diagram? Build them together! That way everyone's on the same page! 
 > - Plan plan plan plan! When you're done planning, PLAN SOME MORE!
+> - Create and use Trello boards, Slack, etc. to help you all communicate and organize yourselves
 
 ## Project proposal/description:
 [insert paragraph here]

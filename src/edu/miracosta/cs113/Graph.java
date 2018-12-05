@@ -4,10 +4,9 @@ package edu.miracosta.cs113;
  * for number of vertices and whether or not the graph is directed. Based on code from Data Structures by
  * Koffman and Wolfgang
  *
- * @author Oscar Fernandez
+ * @author Oscar Fernandez, Zsuzsanna Dianovics, Jacob Valenzuela
  * @version 1.0
  */
-import edu.miracosta.cs113.Edge;
 
 import java.util.Iterator;
 

@@ -20,7 +20,9 @@ public class Edge {
     }
 
     public Edge(int source, int destination, double weight){
-
+        this.source = source;
+        this.destination = destination;
+        this.weight = weight;
     }
 
     public int getSource(){
@@ -33,5 +35,9 @@ public class Edge {
 
     public double getWeight(){
         return 0.0;
+    }
+
+    public String toString(){
+        return "Source: " + this.source + "\nDestination: " + this.destination + "\nWeight: " + this.weight;
     }
 }

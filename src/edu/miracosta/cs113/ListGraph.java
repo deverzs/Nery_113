@@ -23,8 +23,8 @@ public class ListGraph<T> implements Graph {
      * @param isDirected
      */
     public ListGraph(int numVertices, boolean isDirected){
-        this.edges = new List[this.numVertices];
-        this.vertices = (T[]) new Object[this.numVertices];
+        this.edges = new List[numVertices];
+        this.vertices = (T[]) new Object[numVertices];
         this.numVertices = numVertices;
         this.isDirected = isDirected;
 
@@ -77,6 +77,19 @@ public class ListGraph<T> implements Graph {
      * @param scan Scanner connected to dataFile
      */
     public void loadEdgesFromFile(Scanner scan){
+        //If only 2 values, use default weight of 1.0
+        String line;
+        String[] tokens;
+        int source, destination;
+        double weight;
+        while (scan.hasNextLine()){
+            line = scan.nextLine();
+            tokens = line.split(" ");
+            source = Integer.parseInt(tokens[0]);
+            destination = Integer.parseInt(tokens[1]);
+            weight = (tokens.length == 2 ? 1.0 : Double.parseDouble(tokens[2]));
+            this.edges[source].add(new Edge(source, destination, weight));
+        }
     }
 
     /**

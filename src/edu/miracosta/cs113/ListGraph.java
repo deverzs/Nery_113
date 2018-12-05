@@ -29,7 +29,7 @@ public class ListGraph<T> implements Graph {
         this.isDirected = isDirected;
 
         for(int i = 0; i < numVertices; i++){
-            edges[i] = new LinkedList<Edge>();
+            this.edges[i] = new LinkedList<Edge>();
         }
     }
 
@@ -45,22 +45,31 @@ public class ListGraph<T> implements Graph {
 
     @Override
     public void insert(Edge edge) {
-
+        this.edges[edge.getSource()].add(edge);
+        if(!this.isDirected()){
+            this.edges[edge.getDestination()].add(new Edge(edge.getDestination(), edge.getSource(), edge.getWeight()));
+        }
     }
 
     @Override
     public boolean isEdge(int source, int destination) {
-        return false;
+        return edges[source].contains(new Edge(source, destination));
     }
 
     @Override
     public Edge getEdge(int source, int destination) {
-        return null;
+        Edge target = new Edge(source, destination, Double.POSITIVE_INFINITY);
+        for(Edge edge : edges[source]){
+            if(edge.equals(target)){
+                return edge;
+            }
+        }
+        return target;
     }
 
     @Override
     public Iterator<Edge> edgeIterator(int source) {
-        return null;
+        return edges[source].iterator();
     }
 
     /**

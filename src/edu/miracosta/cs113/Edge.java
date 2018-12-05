@@ -13,5 +13,25 @@ public class Edge {
     private int destination;
     private double weight;
 
+    public Edge(int source, int destination){
+        this.source = source;
+        this.destination = destination;
+        this.weight = 1.0;
+    }
 
+    public Edge(int source, int destination, double weight){
+
+    }
+
+    public int getSource(){
+        return 0;
+    }
+
+    public int getDestination(){
+        return 0;
+    }
+
+    public double getWeight(){
+        return 0.0;
+    }
 }

@@ -33,6 +33,65 @@ public class ListGraph<T> implements Graph {
         }
     }
 
+    public ListGraph(T[] vertices, boolean isDirected){
+        this.numVertices = vertices.length;
+        this.isDirected = isDirected;
+        this.edges = new List[this.numVertices];
+        this.vertices = (T[]) new Object[this.numVertices];
+        this.setVertices(vertices);
+
+        for(int i = 0; i < this.numVertices; i++){
+            this.edges[i] = new LinkedList<Edge>();
+        }
+    }
+
+    /**
+     * Sets current vertices to parameter values
+     * @param vertices Array with vertices object for graph
+     */
+    public void setVertices(T[] vertices){
+        if(vertices.length > this.numVertices){
+            throw new IllegalArgumentException("Number of vertices greater than capacity");
+        } else{
+            this.vertices = vertices;
+        }
+    }
+
+    /**
+     * Gets vertex at give location
+     * @param index Location of Object in vertices array. Must be within instantiated numVertices
+     * @return Shallow copy of vertex at given index
+     */
+    public T getVertex(int index){
+        return this.vertices[index];
+    }
+
+    /**
+     * Gets list of all vertices information in graph
+     * @return String with all [index]: vertexData
+     */
+    public String getVerticesString(){
+        StringBuilder verts = new StringBuilder();
+        for(int i = 0; i < this.vertices.length; i++){
+            verts.append("[" + i + "]: " + this.vertices[i] + "\n");
+        }
+        return verts.toString();
+    }
+
+    /**
+     * Gets String with list of all edges in graph
+     * @return List of edges with [source]--- weight --->[dest]
+     */
+    public String getEdgesString(){
+        StringBuilder listGraph = new StringBuilder();
+        for(int i = 0; i < this.numVertices; i++){
+            for(Edge edge : edges[i]){
+                listGraph.append(edge + "\n");
+            }
+        }
+        return listGraph.toString();
+    }
+
     @Override
     public int getNumberOfVertices() {
         return this.numVertices;
@@ -99,11 +158,16 @@ public class ListGraph<T> implements Graph {
      * @param isDirected True if graph i directed, false otherwise
      * @return Graph with edges read from file
      */
-    public Graph createGraph(Scanner scan, boolean isDirected){
+    public static <E> ListGraph<E> createGraph(Scanner scan, boolean isDirected){
         //TODO: fill vertices
-        int numVertices = scan.nextInt();
-        ListGraph<T> loadedGraph = new ListGraph<T>(numVertices, isDirected);
+        int numVertices = Integer.parseInt(scan.nextLine());
+        ListGraph<E> loadedGraph = new ListGraph<E>(numVertices, isDirected);
         loadedGraph.loadEdgesFromFile(scan);
         return loadedGraph;
+    }
+
+    @Override
+    public String toString(){
+        return "Vertices:\n" + this.getVerticesString() + "Edges:\n" + this.getEdgesString();
     }
 }

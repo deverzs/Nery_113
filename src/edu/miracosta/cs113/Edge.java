@@ -65,7 +65,7 @@ public class Edge {
 
     @Override
     public String toString(){
-        return "Source: " + this.source + "\nDestination: " + this.destination + "\nWeight: " + this.weight;
+        return "[" + this.source + "]--- " + this.weight + " --->["  + this.destination + "]";
     }
 
     @Override
@@ -89,6 +89,5 @@ public class Edge {
         Edge anotherEdge = (Edge) o ;
         return ( (destination == anotherEdge.getDestination()) )&&
                 (source == anotherEdge.getSource())  ;
-
     }
 }

@@ -3,13 +3,64 @@ package edu.miracosta.cs113;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class Display {
+
+    public static final int MAP_DISPLAY_WIDTH = 420;
+    public static final int MAP_DISPLAY_HEIGHT = 420;
+
+    public static final int INPUT_FRAME_WIDTH = 400;
+    public static final int INPUT_FRAME_DEPTH = 100;
+
+    public static final int INPUT_TEXTFIELD_SIZE = 5;
+
+    public static final String MAP_DISPLAY_FILE = "displayMap1.jpg";
+
+
+    //Creates the frame that the user will use to give their starting
+    //and ending destination.
+    public static class InputFrame extends JFrame {
+
+        protected JTextField start;
+        protected JTextField end;
+
+        protected JButton find;
+
+        protected JPanel inputPanel;
+        protected JPanel startPanel;
+        protected JPanel endPanel;
+
+        protected JLabel startLabel;
+        protected JLabel endLabel;
+
+        public InputFrame() {
+            super("Enter Input Here");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(INPUT_FRAME_WIDTH, INPUT_FRAME_DEPTH);
+            setLayout(new FlowLayout());
+
+            start = new JTextField(INPUT_TEXTFIELD_SIZE);
+            end = new JTextField(INPUT_TEXTFIELD_SIZE);
+
+            find = new JButton("FIND");
+
+            startLabel = new JLabel("start");
+            endLabel = new JLabel("end");
+
+            inputPanel = new JPanel(new FlowLayout());
+            inputPanel.add(startLabel);
+            inputPanel.add(start);
+            inputPanel.add(endLabel);
+            inputPanel.add(end);
+            inputPanel.add(find);
+            this.add(inputPanel);
+        }
+    }
+
+    //inner class that will contain our background/map image.
     public static class ImagePanel extends JComponent {
         protected Image image;
         public ImagePanel(Image image) {
@@ -22,28 +73,17 @@ public class Display {
         }
     }
 
-        // elsewhere
-//        BufferedImage myImage = ImageIO.read(...);
-//        JFrame myJFrame = new JFrame("Image pane");
-//        myJFrame.setContentPane(new ImagePanel(myImage));
+    //inner class to display the map image
+    public static class MapeDisplayFrame extends JFrame {
 
-    public static class MapDisplay extends JFrame {
-        public static final int WIDTH = 420;
-        public static final int HEIGHT = 420;
-
-        protected JButton find;
-        protected JTextField start;
-        protected JTextField end;
-
-        public MapDisplay() {
+        public MapeDisplayFrame() {
             super("Final Group Project");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setSize(WIDTH, HEIGHT);
+            setSize(MAP_DISPLAY_WIDTH, MAP_DISPLAY_HEIGHT);
 
-            //set background to map image
+            //read image and set it as background
             try {
-                System.out.println("we are here");
-                BufferedImage backgroundImage = ImageIO.read(new File("displayMap1.jpg"));
+                BufferedImage backgroundImage = ImageIO.read(new File(MAP_DISPLAY_FILE));
                 this.setContentPane(new ImagePanel(backgroundImage));
             }
             catch (IOException e) {
@@ -53,8 +93,10 @@ public class Display {
     }
 
     public Display() {
-        MapDisplay map = new MapDisplay();
+        MapeDisplayFrame map = new MapeDisplayFrame();
+        InputFrame inputFrame = new InputFrame();
         map.setVisible(true);
+        inputFrame.setVisible(true);
     }
     public static void main(String[] args) {
         Display display = new Display();

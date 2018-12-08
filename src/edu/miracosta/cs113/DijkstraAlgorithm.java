@@ -1,6 +1,7 @@
 package edu.miracosta.cs113;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Dijkstra's Algorithm Class
@@ -52,9 +53,12 @@ public class DijkstraAlgorithm {
             vMinusS.remove(u) ;
 
             // update the distances
-            for (int v : vMinusS) {
-                if (graph.isEdge(u, v)) {
-                    double weight = graph.getEdge(u, v).getWeight() ;
+            Iterator<Edge> edgeIter = graph.edgeIterator(u) ;
+            while (edgeIter.hasNext()) {
+                Edge edge = edgeIter.next() ;
+                int v = edge.getDestination() ;
+                if (vMinusS.contains(new Integer(v))) {
+                    double weight = edge.getWeight() ;
                     if (dist[u] + weight < dist[v]) {
                         dist[v] = dist[u] + weight ;
                         pred[v] = u ;
@@ -62,8 +66,6 @@ public class DijkstraAlgorithm {
                 }
             }
         }
-
-
 
     }
 }

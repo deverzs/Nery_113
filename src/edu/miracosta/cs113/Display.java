@@ -11,16 +11,18 @@ public class Display {
 
     public static final int MAP_DISPLAY_WIDTH = 420;
     public static final int MAP_DISPLAY_HEIGHT = 420;
+    public static final String MAP_DISPLAY_FILE = "displayMap1.jpg";
+
+    public static final int DIRECTIONS_DISPLAY_WIDTH = 400;
+    public static final int DIRECTIONS_DISPLAY_HEIGHT = 300;
+    public static final int DIRECTIONS_NUM_COLUMNS = 30;
+    public static final int DIRECTIONS_NUM_ROWS = 10;
 
     public static final int INPUT_FRAME_WIDTH = 400;
     public static final int INPUT_FRAME_DEPTH = 100;
-
     public static final int INPUT_TEXTFIELD_SIZE = 5;
 
-    public static final String MAP_DISPLAY_FILE = "displayMap1.jpg";
-
-
-    //Creates the frame that the user will use to give their starting
+    //inner class that creates the frame that the user will use to give their starting
     //and ending destination.
     public static class InputFrame extends JFrame {
 
@@ -30,8 +32,6 @@ public class Display {
         protected JButton find;
 
         protected JPanel inputPanel;
-        protected JPanel startPanel;
-        protected JPanel endPanel;
 
         protected JLabel startLabel;
         protected JLabel endLabel;
@@ -74,9 +74,9 @@ public class Display {
     }
 
     //inner class to display the map image
-    public static class MapeDisplayFrame extends JFrame {
+    public static class MapDisplayPanel extends JFrame {
 
-        public MapeDisplayFrame() {
+        public MapDisplayPanel() {
             super("Final Group Project");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setSize(MAP_DISPLAY_WIDTH, MAP_DISPLAY_HEIGHT);
@@ -92,12 +92,39 @@ public class Display {
         }
     }
 
+    //inner class to display the shortest path directions to user
+    public static class DisplayDirectionsPanel extends JFrame {
+
+        JTextArea textArea;
+        JPanel textPanel;
+
+        public DisplayDirectionsPanel() {
+            super("Shortest Path Directions");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(DIRECTIONS_DISPLAY_WIDTH, DIRECTIONS_DISPLAY_HEIGHT);
+
+            textArea =new JTextArea(DIRECTIONS_NUM_ROWS, DIRECTIONS_NUM_COLUMNS);
+            textPanel = new JPanel();
+            textPanel.add(textArea);
+
+            this.add(textPanel);
+        }
+    }
+    /**
+     * Constructor that will set visible the three display frames
+     */
     public Display() {
-        MapeDisplayFrame map = new MapeDisplayFrame();
+        MapDisplayPanel map = new MapDisplayPanel();
         InputFrame inputFrame = new InputFrame();
+        DisplayDirectionsPanel directionsPanel = new DisplayDirectionsPanel();
         map.setVisible(true);
         inputFrame.setVisible(true);
+        directionsPanel.setVisible(true);
     }
+
+    /**
+     * Test to see what our display actually looks like
+     */
     public static void main(String[] args) {
         Display display = new Display();
     }

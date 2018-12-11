@@ -113,8 +113,9 @@ public class Display {
             catch (IOException e) {
                 System.out.println(e.toString());
             }
-            locationButton1 = new JButton("LOCATION 1");
-            locationButton1.setBounds(50,50,50,50);
+
+            locationButton1 = new JButton("A");
+            locationButton1.setBounds(190,105,50,30);
             add(locationButton1);
 
         }
@@ -142,8 +143,8 @@ public class Display {
         InputFrame inputFrame = new InputFrame();
         DisplayDirectionsPanel directionsPanel = new DisplayDirectionsPanel();
         map.setVisible(true);
-        inputFrame.setVisible(true);
-        directionsPanel.setVisible(true);
+       // inputFrame.setVisible(true);
+        //directionsPanel.setVisible(true);
     }
 
     /**

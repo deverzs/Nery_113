@@ -6,12 +6,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Display {
 
-    public static final int MAP_DISPLAY_WIDTH = 420;
-    public static final int MAP_DISPLAY_HEIGHT = 420;
-    public static final String MAP_DISPLAY_FILE = "displayMap1.jpg";
+    public static final int MAP_DISPLAY_WIDTH = 616;
+    public static final int MAP_DISPLAY_HEIGHT = 564;
+    public static final String MAP_DISPLAY_FILE = "displaymap2.jpg";
 
     public static final int DIRECTIONS_DISPLAY_WIDTH = 400;
     public static final int DIRECTIONS_DISPLAY_HEIGHT = 300;
@@ -22,19 +24,23 @@ public class Display {
     public static final int INPUT_FRAME_DEPTH = 100;
     public static final int INPUT_TEXTFIELD_SIZE = 5;
 
+    //InputFrame's variable
+    protected JTextField start;
+    protected JTextField end;
+    protected JButton find;
+    protected JPanel inputPanel;
+    protected JLabel startLabel;
+    protected JLabel endLabel;
+
+    //DisplayDescription's variables
+    JTextArea textArea;
+    JPanel textPanel;
+
     //inner class that creates the frame that the user will use to give their starting
     //and ending destination.
-    public static class InputFrame extends JFrame {
+    private class InputFrame extends JFrame {
 
-        protected JTextField start;
-        protected JTextField end;
 
-        protected JButton find;
-
-        protected JPanel inputPanel;
-
-        protected JLabel startLabel;
-        protected JLabel endLabel;
 
         public InputFrame() {
             super("Enter Input Here");
@@ -60,8 +66,21 @@ public class Display {
         }
     }
 
+    private class FindDirectionsListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            DisplayDirectionsPanel directions = new DisplayDirectionsPanel();
+            int startPosition = Integer.valueOf(start.getText().charAt(0));
+            int endPosition = Integer.valueOf(end.getText().charAt(0));
+
+        }
+
+    }
+
+
     //inner class that will contain our background/map image.
-    public static class ImagePanel extends JComponent {
+    private class ImagePanel extends JComponent {
         protected Image image;
         public ImagePanel(Image image) {
             this.image = image;
@@ -74,7 +93,7 @@ public class Display {
     }
 
     //inner class to display the map image
-    public static class MapDisplayPanel extends JFrame {
+    private class MapDisplayPanel extends JFrame {
 
         public MapDisplayPanel() {
             super("Final Group Project");
@@ -93,10 +112,7 @@ public class Display {
     }
 
     //inner class to display the shortest path directions to user
-    public static class DisplayDirectionsPanel extends JFrame {
-
-        JTextArea textArea;
-        JPanel textPanel;
+    private class DisplayDirectionsPanel extends JFrame {
 
         public DisplayDirectionsPanel() {
             super("Shortest Path Directions");

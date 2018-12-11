@@ -33,8 +33,11 @@ public class Display {
     protected JLabel endLabel;
 
     //DisplayDescription's variables
-    JTextArea textArea;
-    JPanel textPanel;
+    protected JTextArea directionsTextArea;
+    protected JPanel textPanel;
+
+    //The Map Location Buttons
+    protected JButton locationButton1;
 
     //inner class that creates the frame that the user will use to give their starting
     //and ending destination.
@@ -52,6 +55,7 @@ public class Display {
             end = new JTextField(INPUT_TEXTFIELD_SIZE);
 
             find = new JButton("FIND");
+            find.addActionListener(new FindDirectionsListener());
 
             startLabel = new JLabel("start");
             endLabel = new JLabel("end");
@@ -70,10 +74,11 @@ public class Display {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DisplayDirectionsPanel directions = new DisplayDirectionsPanel();
             int startPosition = Integer.valueOf(start.getText().charAt(0));
             int endPosition = Integer.valueOf(end.getText().charAt(0));
 
+            MiniMap mm = new MiniMap(startPosition, endPosition);
+            directionsTextArea.append(mm.getShortestPath());
         }
 
     }
@@ -119,11 +124,10 @@ public class Display {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setSize(DIRECTIONS_DISPLAY_WIDTH, DIRECTIONS_DISPLAY_HEIGHT);
 
-            textArea =new JTextArea(DIRECTIONS_NUM_ROWS, DIRECTIONS_NUM_COLUMNS);
-            textPanel = new JPanel();
-            textPanel.add(textArea);
+            directionsTextArea =new JTextArea(DIRECTIONS_NUM_ROWS, DIRECTIONS_NUM_COLUMNS);
+            JScrollPane scrollPane = new JScrollPane(directionsTextArea);
 
-            this.add(textPanel);
+            this.add(scrollPane);
         }
     }
     /**

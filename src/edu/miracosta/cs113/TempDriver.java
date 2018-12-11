@@ -8,7 +8,7 @@ public class TempDriver {
 
     public static void main (String[] args) {
         Scanner read = null ;
-        System.out.println("teting") ;
+
 
         try {
             read = new Scanner(new FileInputStream("localMap.txt")) ;
@@ -20,8 +20,11 @@ public class TempDriver {
         ListGraph<String> localMap = ListGraph.createGraph(read, true);
 //        System.out.println(localMap.getNumberOfVertices());
 //        System.out.println(localMap);
-        DijkstraAlgorithm dj = new DijkstraAlgorithm(localMap,0) ;
-        System.out.println(dj.findFromToEnd(18)) ;
+        int start = 2;
+        int end = 18 ;
+       // int numVerts =  ;
+        DijkstraAlgorithm dj = new DijkstraAlgorithm(localMap,start) ;
+        System.out.println(dj.findFromToEnd(end)) ;
 //
 //        ListGraph graph = new ListGraph(5, false) ;
 //        graph.loadEdgesFromFile(read) ;
@@ -31,7 +34,7 @@ public class TempDriver {
 //
 //
 //
-//        System.out.println("Here.") ;
+
 
 
     } // end main

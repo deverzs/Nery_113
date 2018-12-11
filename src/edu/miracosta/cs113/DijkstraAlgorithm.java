@@ -25,7 +25,6 @@ public class DijkstraAlgorithm {
     public DijkstraAlgorithm(Graph graph, int start) {
         this.start = start ;
         int numV = graph.getNumberOfVertices() ;
-        System.out.println("Nodes: " + numV) ;
         pred = new int [numV] ;
         dist = new double[numV] ;
 
@@ -40,7 +39,6 @@ public class DijkstraAlgorithm {
 
         // Initialize pred and dest
         for (int v: vMinusS) {
-
             pred[v] = start ;
             dist[v] = graph.getEdge(start, v).getWeight() ;
         }
@@ -53,13 +51,12 @@ public class DijkstraAlgorithm {
 
             // find the value u in V-S with smallest distance
             for (int v : vMinusS) {
-                if (dist[v] < minDist) {
+                if (dist[v] <= minDist) {
                     minDist = dist[v] ;
                     u = v ;
                 }
             }
 
-            System.out.println("Array " +  toString()) ;
             // remove u from vMinusS
             vMinusS.remove(u) ;
 
@@ -69,7 +66,6 @@ public class DijkstraAlgorithm {
 
             while (edgeIter.hasNext()) {
                 Edge edge = edgeIter.next() ;
-                System.out.println(edge.toString()) ;
                 int v = edge.getDestination() ;
                 if (vMinusS.contains(new Integer(v))) {
                     double weight = edge.getWeight() ;
@@ -78,9 +74,7 @@ public class DijkstraAlgorithm {
                         pred[v] = u ;
                     }
                 }
-                System.out.println("Done : " + k++) ;
             }
-            System.out.println("2time") ;
         }
 
 
@@ -97,7 +91,6 @@ public class DijkstraAlgorithm {
 
         }
         int count = paths.size() ;
-        System.out.println("Size: " + count) ;
         while (count > 0) {
             sb.append(paths.get(count-1)) ;
             count-- ;

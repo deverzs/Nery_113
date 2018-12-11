@@ -133,6 +133,7 @@ public class ListGraph<T> implements Graph {
 
     /**
      * Loads edges from an input file. Each line should contain three data values. "source dest weight"
+     * If weight is not given, default value of 1.0 will be used
      * @param scan Scanner connected to dataFile
      */
     public void loadEdgesFromFile(Scanner scan){

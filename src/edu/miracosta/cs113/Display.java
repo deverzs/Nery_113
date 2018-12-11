@@ -74,8 +74,8 @@ public class Display {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int startPosition = Integer.valueOf(start.getText().charAt(0));
-            int endPosition = Integer.valueOf(end.getText().charAt(0));
+            int startPosition = Integer.parseInt(start.getText());
+            int endPosition = Integer.parseInt(end.getText());
 
             MiniMap mm = new MiniMap(startPosition, endPosition);
             directionsTextArea.append(mm.getShortestPath());
@@ -98,9 +98,9 @@ public class Display {
     }
 
     //inner class to display the map image
-    private class MapDisplayPanel extends JFrame {
+    private class MapDisplayFrame extends JFrame {
 
-        public MapDisplayPanel() {
+        public MapDisplayFrame() {
             super("Final Group Project");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setSize(MAP_DISPLAY_WIDTH, MAP_DISPLAY_HEIGHT);
@@ -113,6 +113,10 @@ public class Display {
             catch (IOException e) {
                 System.out.println(e.toString());
             }
+            locationButton1 = new JButton("LOCATION 1");
+            locationButton1.setBounds(50,50,50,50);
+            add(locationButton1);
+
         }
     }
 
@@ -134,7 +138,7 @@ public class Display {
      * Constructor that will set visible the three display frames
      */
     public Display() {
-        MapDisplayPanel map = new MapDisplayPanel();
+        MapDisplayFrame map = new MapDisplayFrame();
         InputFrame inputFrame = new InputFrame();
         DisplayDirectionsPanel directionsPanel = new DisplayDirectionsPanel();
         map.setVisible(true);

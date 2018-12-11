@@ -17,6 +17,7 @@ public class MiniMap {
 //    public MiniMap(int source)
 
     public MiniMap(int source, int destination){
+        this.destination = destination;
         this.currentMap = MiniMap.buildMap(MAP_FILE, DEFAULT_DIRECTED_CHOICE);
         this.shortCut = new DijkstraAlgorithm(this.currentMap, source);
 

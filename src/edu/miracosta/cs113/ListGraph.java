@@ -168,6 +168,14 @@ public class ListGraph<T> implements Graph {
 
     @Override
     public String toString(){
-        return "Vertices:\n" + this.getVerticesString() + "Edges:\n" + this.getEdgesString();
+        StringBuilder listGraph = new StringBuilder();
+        for(int i = 0; i < this.numVertices; i++){
+            listGraph.append("[" + i + "]: ");
+            for(Edge edge : edges[i]){
+                listGraph.append("(" + edge + ") ");
+            }
+            listGraph.append("\n");
+        }
+        return listGraph.toString();
     }
 }

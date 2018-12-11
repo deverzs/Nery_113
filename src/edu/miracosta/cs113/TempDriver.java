@@ -11,22 +11,27 @@ public class TempDriver {
         System.out.println("teting") ;
 
         try {
-            read = new Scanner(new FileInputStream("t2.txt")) ;
+            read = new Scanner(new FileInputStream("localMap.txt")) ;
         }
         catch (FileNotFoundException e) {
             System.out.println("Error.") ;
             System.exit(0) ;
         }
-
-        ListGraph graph = new ListGraph(5, false) ;
-        graph.loadEdgesFromFile(read) ;
-        DijkstraAlgorithm dj = new DijkstraAlgorithm(graph,1 ) ;
-        System.out.println(dj.findFromToEnd(3)) ;
-
-
-
-
-        System.out.println("Here.") ;
+        ListGraph<String> localMap = ListGraph.createGraph(read, true);
+//        System.out.println(localMap.getNumberOfVertices());
+//        System.out.println(localMap);
+        DijkstraAlgorithm dj = new DijkstraAlgorithm(localMap,0) ;
+        System.out.println(dj.findFromToEnd(18)) ;
+//
+//        ListGraph graph = new ListGraph(5, false) ;
+//        graph.loadEdgesFromFile(read) ;
+//        DijkstraAlgorithm dj = new DijkstraAlgorithm(graph,1 ) ;
+//        System.out.println(dj.findFromToEnd(3)) ;
+//
+//
+//
+//
+//        System.out.println("Here.") ;
 
 
     } // end main

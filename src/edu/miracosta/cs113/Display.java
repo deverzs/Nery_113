@@ -46,17 +46,22 @@ public class Display {
 
     //The Map Location Buttons
     protected JButton locationButton0, locationButton1, locationButton2, locationButton3, locationButton4, locationButton5,
-                        locationButton6, locationButton7, locationButton8, locationButton9, locationButton10, locationButton11;
+                        locationButton6, locationButton7, locationButton8, locationButton9, locationButton10, locationButton11,
+                        locationButton12, locationButton13, locationButton14, locationButton15, locationButton16, locationButton17,
+                        locationButton18, locationButton19;
     //This array will make adding the buttons to the map at a later time easier. Also uses less lines of code.
     protected JButton[] locationButtons = {locationButton0, locationButton1, locationButton2, locationButton3, locationButton4,
                                             locationButton5, locationButton6, locationButton7, locationButton8, locationButton9,
-                                            locationButton10, locationButton11};
+                                            locationButton10, locationButton11, locationButton12, locationButton13, locationButton14,
+                                            locationButton15, locationButton16, locationButton17, locationButton18, locationButton19};
     //Location Button Constants
     public static final int LOCATION_BUTTON_WIDTH = 50;
     public static final int LOCATION_BUTTON_HEIGHT = 30;
     //The X and Y position of all the Location Buttons
-    public static final int[] LOCATION_BUTTON_X_POS = {190, 250, 330, 405, 480, 240, 370, 480, 370, 480, 240, 300};
-    public static final int[] LOCATION_BUTTON_Y_POS = {105, 105, 105, 130, 105, 207, 207, 207, 260, 260, 320, 320};
+    public static final int[] LOCATION_BUTTON_X_POS = {190, 250, 330, 405, 480, 240, 370, 480, 370, 480, 240, 300,
+                                                        300, 405, 480, 370, 480, 370, 460, 530};
+    public static final int[] LOCATION_BUTTON_Y_POS = {105, 105, 105, 130, 105, 207, 207, 207, 260, 260, 320, 320,
+                                                        360, 335, 340, 405, 410, 470, 505, 475};
     //Location Frame's Components
     protected JTextArea locationTextArea;
 
@@ -138,39 +143,7 @@ public class Display {
             catch (IOException e) {
                 System.out.println(e.toString());
             }
-
-//            locationButton0 = new JButton("0");
-//            locationButton0.setBounds(190,105,50,30);
-//            locationButton0.addActionListener(new LocationDisplayListener(locationButton0.getText()));
-//
-            JButton locationButton12 = new JButton("12");
-            JButton locationButton13 = new JButton("13");
-            JButton locationButton14 = new JButton("14");
-            JButton locationButton15 = new JButton("15");
-            JButton locationButton16 = new JButton("16");
-            JButton locationButton17 = new JButton("17");
-            JButton locationButton18 = new JButton("18");
-            JButton locationButton19 = new JButton("19");
-
-            locationButton12.setBounds(300, 365, 50, 30);
-            locationButton13.setBounds(405, 335, 50, 30);
-            locationButton14.setBounds(480, 340, 50, 30);
-            locationButton15.setBounds(370, 405, 50, 30);
-            locationButton16.setBounds(480, 410, 50, 30);
-            locationButton17.setBounds(370, 470, 50, 30);
-            locationButton18.setBounds(460, 505, 50, 30);
-            locationButton19.setBounds(530, 475, 50, 30);
-
-
-            add(locationButton12);
-            add(locationButton13);
-            add(locationButton14);
-            add(locationButton15);
-            add(locationButton16);
-            add(locationButton17);
-            add(locationButton18);
-            add(locationButton19);
-
+            //Create the location buttons and places them on the display map.
             for(int i = 0 ; i < locationButtons.length; i++) {
                 locationButtons[i] = new JButton(Integer.toString(i));
                 locationButtons[i].setBounds(LOCATION_BUTTON_X_POS[i], LOCATION_BUTTON_Y_POS[i],
@@ -183,16 +156,13 @@ public class Display {
     }
 
     private class LocationDisplayListener implements ActionListener {
-
         private String value;
-
+        //Constructor to make getting a string variable of the Button's text easier (ex. "0" , "7", "18").
+        //This variable will make getting the location information from the MiniMap class easier.
         public LocationDisplayListener(String buttonName) {
             this.value = buttonName;
             System.out.println(buttonName);
         }
-
-
-
         @Override
         public void actionPerformed(ActionEvent e) {
             String temp = (String)miniMap.getLocationData(Integer.parseInt(value));
@@ -241,9 +211,9 @@ public class Display {
         DirectionsDisplayFrame directionsPanel = new DirectionsDisplayFrame();
         LocationDisplayFrame locationDisplayFrame = new LocationDisplayFrame();
         map.setVisible(true);
-        //inputFrame.setVisible(true);
-        //directionsPanel.setVisible(true);
-        //locationDisplayFrame.setVisible(true);
+        inputFrame.setVisible(true);
+        directionsPanel.setVisible(true);
+        locationDisplayFrame.setVisible(true);
     }
 
     /**

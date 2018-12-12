@@ -13,7 +13,7 @@ public class Display {
     //Map Display Constants
     public static final int MAP_DISPLAY_WIDTH = 616;
     public static final int MAP_DISPLAY_HEIGHT = 564;
-    public static final String MAP_DISPLAY_FILE = "displaymap2.jpg";
+    public static final String MAP_DISPLAY_FILE = "displaymap3.jpg";
     //Location Display Constants
     public static final int LOCATION_DISPLAY_WIDTH = 400;
     public static final int LOCATION_DISPLAY_HEIGHT = 300;

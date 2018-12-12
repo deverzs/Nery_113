@@ -4,7 +4,7 @@ import java.util.Scanner ;
 import java.io.FileInputStream ;
 import java.io.FileNotFoundException ;
 
-public class TempDriver {
+public class MapDriver {
 
     public static void main (String[] args) {
         Scanner read = null ;
@@ -18,22 +18,15 @@ public class TempDriver {
             System.exit(0) ;
         }
         ListGraph<String> localMap = ListGraph.createGraph(read, true);
-//        System.out.println(localMap.getNumberOfVertices());
-//        System.out.println(localMap);
-        int start = 2;
-        int end = 18 ;
-       // int numVerts =  ;
+
+        int start = 5;
+        int end = 13 ;
+
+        Display display = new Display() ;
+
         DijkstraAlgorithm dj = new DijkstraAlgorithm(localMap,start) ;
         System.out.println(dj.findFromToEnd(end)) ;
-//
-//        ListGraph graph = new ListGraph(5, false) ;
-//        graph.loadEdgesFromFile(read) ;
-//        DijkstraAlgorithm dj = new DijkstraAlgorithm(graph,1 ) ;
-//        System.out.println(dj.findFromToEnd(3)) ;
-//
-//
-//
-//
+
 
 
 

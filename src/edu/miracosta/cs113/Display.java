@@ -98,21 +98,6 @@ public class Display {
         }
     }
 
-    private class FindDirectionsListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int startPosition = Integer.parseInt(start.getText());
-            int endPosition = Integer.parseInt(end.getText());
-
-            miniMap = new MiniMap(startPosition, endPosition);
-            miniMap.setMapVertices(stringArr);
-            directionsTextArea.setText("");
-            directionsTextArea.append(miniMap.getShortestPath());
-        }
-
-    }
-
 
     //inner class that will contain our background/map image.
     private class ImagePanel extends JComponent {
@@ -155,20 +140,7 @@ public class Display {
         }
     }
 
-    private class LocationDisplayListener implements ActionListener {
-        private String value;
-        //Constructor to make getting a string variable of the Button's text easier (ex. "0" , "7", "18").
-        //This variable will make getting the location information from the MiniMap class easier.
-        public LocationDisplayListener(String buttonName) {
-            this.value = buttonName;
-            System.out.println(buttonName);
-        }
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String temp = (String)miniMap.getLocationData(Integer.parseInt(value));
-            locationTextArea.append(temp);
-        }
-    }
+
 
     //inner class to display location information
     private class LocationDisplayFrame extends JFrame {
@@ -200,6 +172,35 @@ public class Display {
 
             add(scrollPane);
         }
+    }
+    private class LocationDisplayListener implements ActionListener {
+        private String value;
+        //Constructor to make getting a string variable of the Button's text easier (ex. "0" , "7", "18").
+        //This variable will make getting the location information from the MiniMap class easier.
+        public LocationDisplayListener(String buttonName) {
+            this.value = buttonName;
+            System.out.println(buttonName);
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String temp = (String)miniMap.getLocationData(Integer.parseInt(value));
+            locationTextArea.setText("");
+            locationTextArea.append(temp);
+        }
+    }
+    private class FindDirectionsListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int startPosition = Integer.parseInt(start.getText());
+            int endPosition = Integer.parseInt(end.getText());
+
+            miniMap = new MiniMap(startPosition, endPosition);
+            miniMap.setMapVertices(stringArr);
+            directionsTextArea.setText("");
+            directionsTextArea.append(miniMap.getShortestPath());
+        }
+
     }
     /**
      * Constructor that will set visible the three display frames

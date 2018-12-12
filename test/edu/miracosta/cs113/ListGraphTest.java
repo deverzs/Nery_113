@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
@@ -82,5 +83,32 @@ public class ListGraphTest {
 
         assertEquals("Expected Edge was not found", this.testGraph.getEdge(0, 2), testEdge);
         assertNotEquals("Are not equal", this.testGraph.getEdge(0, 5), testEdge);
+    }
+
+    @Test
+    public void testInsert(){
+        String expectedEdges = "[0]--- 0.5 --->[1]\n[0]--- 0.3 --->[2]\n[1]--- 0.5 --->[2]\n[2]--- 0.3 --->[3]\n[3]--- 0.5 --->[4]\n[4]--- 0.3 --->[2]\n[4]--- 0.5 --->[0]\n";
+        Edge testEdge = new Edge(4, 0, 0.5);
+        this.testGraph = this.createGraph(GRAPH_FILE, true);
+        testGraph.insert(testEdge);
+        assertEquals("Edge not inserted properly.", expectedEdges, testGraph.getEdgesString());
+    }
+    @Test
+    public void testIsEdge(){
+        this.testGraph = this.createGraph(GRAPH_FILE, true);
+        assertTrue("Expected edge to exist", testGraph.isEdge(0, 2));
+        assertFalse("Expected edge to not exist", testGraph.isEdge(0, 4));
+    }
+
+    @Test
+    public void testEdgeIterator(){
+        String expectedEdges = "[0]--- 0.5 --->[1]\n[0]--- 0.3 --->[2]\n";
+        this.testGraph = this.createGraph(GRAPH_FILE, true);
+        StringBuilder result = new StringBuilder();
+        Iterator<Edge> edgeIt = testGraph.edgeIterator(0);
+        while(edgeIt.hasNext()){
+            result.append(edgeIt.next().toString() + "\n");
+        }
+        assertEquals("Expected same list of edges", expectedEdges, result.toString());
     }
 }

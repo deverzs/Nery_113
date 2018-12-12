@@ -33,6 +33,11 @@ public class ListGraph<T> implements Graph {
         }
     }
 
+    /**
+     * Constructor that accepts vertices[]
+     * @param vertices
+     * @param isDirected
+     */
     public ListGraph(T[] vertices, boolean isDirected){
         this.numVertices = vertices.length;
         this.isDirected = isDirected;

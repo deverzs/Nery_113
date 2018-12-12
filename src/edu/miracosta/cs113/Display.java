@@ -35,8 +35,7 @@ public class Display {
     public static final int INPUT_FRAME_WIDTH = 400;
     public static final int INPUT_FRAME_DEPTH = 100;
     public static final int INPUT_TEXTFIELD_SIZE = 5;
-    //String Array that will connect location with a description
-    //.... still needs work
+    //Location Info Array that will connect location with a description
     public static final String[] locationInfoArr = MiniMap.readLocationData("locationInformation.txt");
 
     //InputFrame's variable
@@ -161,6 +160,7 @@ public class Display {
 
             locationTextArea = new JTextArea(LOCATION_TEXTAREA_NUM_ROWS, LOCATION_TEXTAREA_NUM_COLUMNS);
             locationTextArea.setEditable(false);
+            locationTextArea.setFont(new Font("Serif",Font.PLAIN,20));
             JScrollPane scrollPane = new JScrollPane(locationTextArea);
 
             add(scrollPane);
@@ -178,6 +178,7 @@ public class Display {
 
             directionsTextArea =new JTextArea(DIRECTIONS_NUM_ROWS, DIRECTIONS_NUM_COLUMNS);
             directionsTextArea.setEditable(false);
+            directionsTextArea.setFont(new Font("Serif",Font.PLAIN,20));
             JScrollPane scrollPane = new JScrollPane(directionsTextArea);
 
             add(scrollPane);
@@ -234,10 +235,4 @@ public class Display {
         directionsPanel.setVisible(true);
         locationDisplayFrame.setVisible(true);
     }
-
-    //Test to see if program works
-    public static void main(String[] args) {
-        Display display = new Display();
-    }
-
 }

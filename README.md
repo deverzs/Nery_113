@@ -45,4 +45,4 @@ algorithms.]
 
 
 ## Sequence Diagram (for driver):
-[insert image here]
+![untitled diagram 6](https://user-images.githubusercontent.com/31230409/49847710-6fec4400-fd86-11e8-8f3e-439b6b33cb01.jpg)

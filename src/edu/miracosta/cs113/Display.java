@@ -10,24 +10,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Display {
-
+    //Map Display Constants
     public static final int MAP_DISPLAY_WIDTH = 616;
     public static final int MAP_DISPLAY_HEIGHT = 564;
     public static final String MAP_DISPLAY_FILE = "displaymap2.jpg";
-
+    //Location Display Constants
     public static final int LOCATION_DISPLAY_WIDTH = 400;
     public static final int LOCATION_DISPLAY_HEIGHT = 300;
     public static final int LOCATION_TEXTAREA_NUM_ROWS = 5;
     public static final int LOCATION_TEXTAREA_NUM_COLUMNS = 30;
-
+    //Directions Display Constants
     public static final int DIRECTIONS_DISPLAY_WIDTH = 400;
     public static final int DIRECTIONS_DISPLAY_HEIGHT = 300;
     public static final int DIRECTIONS_NUM_COLUMNS = 30;
     public static final int DIRECTIONS_NUM_ROWS = 10;
-
+    //Input Frame Constants
     public static final int INPUT_FRAME_WIDTH = 400;
     public static final int INPUT_FRAME_DEPTH = 100;
     public static final int INPUT_TEXTFIELD_SIZE = 5;
+    //String Array that will connect location with a description
+    //.... still needs work
+    public static final String[] stringArr = { "one","two","three","4","5", "6", "7","8","9", "10", "11", "12", "13",
+            "14", "15", "16", "17", "18"};
+
+    //Location Button Constants
+    public static final int LOCATION_BUTTON_WIDTH = 50;
+    public static final int LOCATION_BUTTON_HEIGHT = 30;
+    public static final int[] LOCATION_BUTTON_X_POS = {190, 250, 330};
+    public static final int[] LOCATION_BUTTON_Y_POS = {105, 105, 105};
+
 
     //InputFrame's variable
     protected JTextField start;
@@ -42,13 +53,13 @@ public class Display {
     protected JPanel textPanel;
 
     //The Map Location Buttons
-    protected JButton locationButton1;
+    protected JButton locationButton0, locationButton1, locationButton2;
+    protected JButton[] locationButtons = {locationButton0, locationButton1, locationButton2 };
 
     //Location Frame's Components
     protected JTextArea locationTextArea;
 
-    //Location Frame object to be used by actionListener
-    protected LocationDisplayFrame locationDisplayFrame;
+    protected MiniMap miniMap = new MiniMap(0,18);
 
     //inner class that creates the frame that the user will use to give their starting
     //and ending destination.
@@ -88,8 +99,9 @@ public class Display {
             int startPosition = Integer.parseInt(start.getText());
             int endPosition = Integer.parseInt(end.getText());
 
-            MiniMap mm = new MiniMap(startPosition, endPosition);
-            directionsTextArea.append(mm.getShortestPath());
+            miniMap = new MiniMap(startPosition, endPosition);
+            miniMap.setMapVertives(stringArr);
+            directionsTextArea.append(miniMap.getShortestPath());
         }
 
     }
@@ -125,19 +137,47 @@ public class Display {
                 System.out.println(e.toString());
             }
 
-            locationButton1 = new JButton("0");
-            locationButton1.setBounds(190,105,50,30);
-            locationButton1.addActionListener(new LocationDisplayListener());
-            add(locationButton1);
+//            locationButton0 = new JButton("0");
+//            locationButton0.setBounds(190,105,50,30);
+//            locationButton0.addActionListener(new LocationDisplayListener(locationButton0.getText()));
+//
+            JButton locationButton3 = new JButton("3");
+            JButton locationButton4 = new JButton("4");
+            JButton locationButton5 = new JButton("5");
+
+            locationButton3.setBounds(405, 130, 50, 30);
+            locationButton4.setBounds(480, 105, 50, 30);
+
+
+            add(locationButton3);
+            add(locationButton4);
+
+            for(int i = 0 ; i < locationButtons.length; i++) {
+                locationButtons[i] = new JButton(Integer.toString(i));
+                locationButtons[i].setBounds(LOCATION_BUTTON_X_POS[i], LOCATION_BUTTON_Y_POS[i],
+                                                LOCATION_BUTTON_WIDTH, LOCATION_BUTTON_HEIGHT);
+                locationButtons[i].addActionListener(new LocationDisplayListener(locationButtons[i].getText()));
+                add(locationButtons[i]);
+            }
 
         }
     }
 
     private class LocationDisplayListener implements ActionListener {
+
+        private String value;
+
+        public LocationDisplayListener(String buttonName) {
+            this.value = buttonName;
+            System.out.println(buttonName);
+        }
+
+
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            locationDisplayFrame = new LocationDisplayFrame();
-            locationDisplayFrame.setVisible(true);
+            String temp = (String)miniMap.getLocationData(Integer.parseInt(value));
+            locationTextArea.append(temp);
         }
     }
 
@@ -176,12 +216,15 @@ public class Display {
      * Constructor that will set visible the three display frames
      */
     public Display() {
+        miniMap.setMapVertives(stringArr);
         MapDisplayFrame map = new MapDisplayFrame();
         InputFrame inputFrame = new InputFrame();
         DirectionsDisplayFrame directionsPanel = new DirectionsDisplayFrame();
+        LocationDisplayFrame locationDisplayFrame = new LocationDisplayFrame();
         map.setVisible(true);
-        inputFrame.setVisible(true);
-        directionsPanel.setVisible(true);
+        //inputFrame.setVisible(true);
+        //directionsPanel.setVisible(true);
+        //locationDisplayFrame.setVisible(true);
     }
 
     /**

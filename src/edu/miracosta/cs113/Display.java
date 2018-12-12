@@ -31,7 +31,7 @@ public class Display {
     //String Array that will connect location with a description
     //.... still needs work
     public static final String[] stringArr = { "one","two","three","4","5", "6", "7","8","9", "10", "11", "12", "13",
-            "14", "15", "16", "17", "18"};
+            "14", "15", "16", "17", "18", "19", "20"};
 
     //InputFrame's variable
     protected JTextField start;

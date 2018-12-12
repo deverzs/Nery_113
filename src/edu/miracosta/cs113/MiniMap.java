@@ -21,7 +21,6 @@ public class MiniMap {
         this.destination = destination;
         this.currentMap = MiniMap.buildMap(MAP_FILE, DEFAULT_DIRECTED_CHOICE);
         this.shortCut = new DijkstraAlgorithm(this.currentMap, source);
-
     }
 
     public String getShortestPath(){
@@ -38,6 +37,14 @@ public class MiniMap {
         ListGraph<E> temp = ListGraph.createGraph(inFile, isDirected);
         inFile.close();
         return temp;
+    }
+
+    public void setMapVertives(Object[] locations){
+        currentMap.setVertices(locations);
+    }
+
+    public Object getLocationData(int index){
+        return currentMap.getVertex(index);
     }
 
     //return shortest path

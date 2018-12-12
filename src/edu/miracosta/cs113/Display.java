@@ -102,7 +102,7 @@ public class Display {
             int endPosition = Integer.parseInt(end.getText());
 
             miniMap = new MiniMap(startPosition, endPosition);
-            miniMap.setMapVertives(stringArr);
+            miniMap.setMapVertices(stringArr);
             directionsTextArea.setText("");
             directionsTextArea.append(miniMap.getShortestPath());
         }
@@ -221,7 +221,7 @@ public class Display {
      * Constructor that will set visible the three display frames
      */
     public Display() {
-        miniMap.setMapVertives(stringArr);
+        miniMap.setMapVertices(stringArr);
         MapDisplayFrame map = new MapDisplayFrame();
         InputFrame inputFrame = new InputFrame();
         DirectionsDisplayFrame directionsPanel = new DirectionsDisplayFrame();

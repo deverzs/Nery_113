@@ -160,10 +160,18 @@ public class ListGraph<T> implements Graph {
      * @return Graph with edges read from file
      */
     public static <E> ListGraph<E> createGraph(Scanner scan, boolean isDirected){
-        //TODO: fill vertices
         int numVertices = Integer.parseInt(scan.nextLine());
         ListGraph<E> loadedGraph = new ListGraph<E>(numVertices, isDirected);
         loadedGraph.loadEdgesFromFile(scan);
+        return loadedGraph;
+    }
+
+    /** Overloaded method to load vertices as well*/
+    public static <E> ListGraph<E> createGraph(Scanner scan, Object[] vertices, boolean isDirected){
+        int numVertices = Integer.parseInt(scan.nextLine());
+        ListGraph<E> loadedGraph = new ListGraph<E>(numVertices, isDirected);
+        loadedGraph.loadEdgesFromFile(scan);
+        loadedGraph.setVertices(vertices);
         return loadedGraph;
     }
 
@@ -179,6 +187,4 @@ public class ListGraph<T> implements Graph {
         }
         return listGraph.toString();
     }
-
-
 }

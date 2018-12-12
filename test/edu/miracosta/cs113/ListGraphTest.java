@@ -111,4 +111,24 @@ public class ListGraphTest {
         }
         assertEquals("Expected same list of edges", expectedEdges, result.toString());
     }
+
+    @Test
+    public void testSetVertices(){
+        String expectedVerts = "[0]: l1\n[1]: l2\n[2]: l3\n[3]: l4\n[4]: l5\n";
+        String[] testLocations = {"l1", "l2", "l3", "l4", "l5"};
+        this.testGraph = this.createGraph(GRAPH_FILE, true);
+        this.testGraph.setVertices(testLocations);
+
+        assertEquals("Expected equal vents", expectedVerts, testGraph.getVerticesString());
+    }
+
+    @Test
+    public void testGetVertex(){
+        String expectedVertex = "l4";
+        String[] testLocations = {"l1", "l2", "l3", "l4", "l5"};
+        this.testGraph = this.createGraph(GRAPH_FILE, true);
+        this.testGraph.setVertices(testLocations);
+        assertEquals("unexpected vertex detected", expectedVertex, testGraph.getVertex(3));
+    }
+
 }

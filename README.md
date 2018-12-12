@@ -28,16 +28,21 @@ Complete the `Graph` class, either as an adjacency list or adjacency matrix, per
 > - Create and use Trello boards, Slack, etc. to help you all communicate and organize yourselves
 
 ## Project proposal/description:
-[insert paragraph here]
+[We propose to build a map that will pick the shortest distance from location
+A to location B. This is an Oceanside walking tour app. We will use an Oceanside map
+to determine the locations.]
 
 ## Graph algorithm used:
-[insert name of algorithm here and how it's used]
+[We are using Dijkstra's Algorithm because it chooses the shortest path
+based on weight and the run time for that is about the same ss for other comparable
+algorithms.]
 
 ## Screenshot(s):
 [insert image(s) here to show main use/screen of program]
 
 ## UML Class+Relationship Diagram:
-[insert image here]
+![untitled diagram 5](https://user-images.githubusercontent.com/31230409/49847391-b2148600-fd84-11e8-9923-d24610fffda2.jpg)
+
 
 ## Sequence Diagram (for driver):
-[insert image here]
+![untitled diagram 6](https://user-images.githubusercontent.com/31230409/49847710-6fec4400-fd86-11e8-8f3e-439b6b33cb01.jpg)

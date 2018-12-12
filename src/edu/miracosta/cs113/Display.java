@@ -1,4 +1,11 @@
 package edu.miracosta.cs113;
+/**
+ *  Display.java :
+ *  GUI class that will display the map, the input frame, the directions and any location information.
+ *
+ * @author @author Oscar Fernandez, Zsuzsanna Dianovics, Jacob Valenzuela
+ * @version 1.0
+ */
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +19,7 @@ import java.awt.event.ActionListener;
 public class Display {
     //Map Display Constants
     public static final int MAP_DISPLAY_WIDTH = 616;
-    public static final int MAP_DISPLAY_HEIGHT = 564;
+    public static final int MAP_DISPLAY_HEIGHT = 576;
     public static final String MAP_DISPLAY_FILE = "displayMap4.jpg";
     //Location Display Constants
     public static final int LOCATION_DISPLAY_WIDTH = 400;
@@ -30,7 +37,7 @@ public class Display {
     public static final int INPUT_TEXTFIELD_SIZE = 5;
     //String Array that will connect location with a description
     //.... still needs work
-    public static final String[] stringArr = MiniMap.readLocationData("locationInformation.txt");
+    public static final String[] locationInfoArr = MiniMap.readLocationData("locationInformation.txt");
 
     //InputFrame's variable
     protected JTextField start;
@@ -67,8 +74,9 @@ public class Display {
 
     protected MiniMap miniMap = new MiniMap(0,18);
 
-    //inner class that creates the frame that the user will use to give their starting
-    //and ending destination.
+    //Input Frame:
+    //Creates the frame that the user will use to give their starting
+    //location and ending destination.
     private class InputFrame extends JFrame {
 
 
@@ -98,8 +106,8 @@ public class Display {
         }
     }
 
-
-    //inner class that will contain our background/map image.
+    //ImagePanel:
+    //Component that will contain our background/map image.
     private class ImagePanel extends JComponent {
         protected Image image;
         public ImagePanel(Image image) {
@@ -111,8 +119,9 @@ public class Display {
             g.drawImage(image, 0, 0, this);
         }
     }
-
-    //inner class to display the map image
+    //MapDisplayFrame:
+    //Displays map to user. Uses the image and adds it a ImagePanel and
+    //sets the background to that ImagePanel.
     private class MapDisplayFrame extends JFrame {
 
         public MapDisplayFrame() {
@@ -141,8 +150,9 @@ public class Display {
     }
 
 
-
-    //inner class to display location information
+    //LocationDisplayFrame
+    //Displays location information. The information displayed is dependent
+    //on the button that the user presses.
     private class LocationDisplayFrame extends JFrame {
         public LocationDisplayFrame() {
             super("LOCATION INFORMATION");
@@ -157,8 +167,8 @@ public class Display {
 
         }
     }
-
-    //inner class to display the shortest path directions to user
+    //DirectionsDisplay:
+    //Displays the shortest path directions to the user.
     private class DirectionsDisplayFrame extends JFrame {
 
         public DirectionsDisplayFrame() {
@@ -173,6 +183,9 @@ public class Display {
             add(scrollPane);
         }
     }
+    //LocationDisplayListener:
+    //ActionListener that will check which button was pressed, retrieve the location information for that button
+    //and display tha information to the user in the LocationDisplayFrame
     private class LocationDisplayListener implements ActionListener {
         private String value;
         //Constructor to make getting a string variable of the Button's text easier (ex. "0" , "7", "18").
@@ -188,6 +201,10 @@ public class Display {
             locationTextArea.append(temp);
         }
     }
+    //FindDirectionsListener:
+    //Action Listener that will retrieve the starting location and ending destination from the Input Frame.
+    //It then will use the MiniMap class to determine the shortest path between the start and end.
+    //Finally, it will display those results to the user using the DirectionsDisplayFrame.
     private class FindDirectionsListener implements ActionListener {
 
         @Override
@@ -196,17 +213,18 @@ public class Display {
             int endPosition = Integer.parseInt(end.getText());
 
             miniMap = new MiniMap(startPosition, endPosition);
-            miniMap.setMapVertices(stringArr);
+            miniMap.setMapVertices(locationInfoArr);
             directionsTextArea.setText("");
             directionsTextArea.append(miniMap.getShortestPath());
         }
 
     }
-    /**
-     * Constructor that will set visible the three display frames
-     */
+    //Display Constructor:
+    //First, miniMap links each location/button to a specific string element of locationInfoArr.
+    //The elements are Strings describing that specific location in Oceanside.
+    //Finally, it instantiates each of the inner class JFrames and sets them visible.
     public Display() {
-        miniMap.setMapVertices(stringArr);
+        miniMap.setMapVertices(locationInfoArr);
         MapDisplayFrame map = new MapDisplayFrame();
         InputFrame inputFrame = new InputFrame();
         DirectionsDisplayFrame directionsPanel = new DirectionsDisplayFrame();
@@ -217,9 +235,7 @@ public class Display {
         locationDisplayFrame.setVisible(true);
     }
 
-    /**
-     * Test to see what our display actually looks like
-     */
+    //Test to see if program works
     public static void main(String[] args) {
         Display display = new Display();
     }

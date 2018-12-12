@@ -33,13 +33,6 @@ public class Display {
     public static final String[] stringArr = { "one","two","three","4","5", "6", "7","8","9", "10", "11", "12", "13",
             "14", "15", "16", "17", "18"};
 
-    //Location Button Constants
-    public static final int LOCATION_BUTTON_WIDTH = 50;
-    public static final int LOCATION_BUTTON_HEIGHT = 30;
-    public static final int[] LOCATION_BUTTON_X_POS = {190, 250, 330};
-    public static final int[] LOCATION_BUTTON_Y_POS = {105, 105, 105};
-
-
     //InputFrame's variable
     protected JTextField start;
     protected JTextField end;
@@ -53,9 +46,18 @@ public class Display {
     protected JPanel textPanel;
 
     //The Map Location Buttons
-    protected JButton locationButton0, locationButton1, locationButton2;
-    protected JButton[] locationButtons = {locationButton0, locationButton1, locationButton2 };
-
+    protected JButton locationButton0, locationButton1, locationButton2, locationButton3, locationButton4, locationButton5,
+                        locationButton6, locationButton7, locationButton8, locationButton9, locationButton10, locationButton11;
+    //This array will make adding the buttons to the map at a later time easier. Also uses less lines of code.
+    protected JButton[] locationButtons = {locationButton0, locationButton1, locationButton2, locationButton3, locationButton4,
+                                            locationButton5, locationButton6, locationButton7, locationButton8, locationButton9,
+                                            locationButton10, locationButton11};
+    //Location Button Constants
+    public static final int LOCATION_BUTTON_WIDTH = 50;
+    public static final int LOCATION_BUTTON_HEIGHT = 30;
+    //The X and Y position of all the Location Buttons
+    public static final int[] LOCATION_BUTTON_X_POS = {190, 250, 330, 405, 480, 240, 370, 480, 370, 480, 240, 300};
+    public static final int[] LOCATION_BUTTON_Y_POS = {105, 105, 105, 130, 105, 207, 207, 207, 260, 260, 320, 320};
     //Location Frame's Components
     protected JTextArea locationTextArea;
 
@@ -101,6 +103,7 @@ public class Display {
 
             miniMap = new MiniMap(startPosition, endPosition);
             miniMap.setMapVertives(stringArr);
+            directionsTextArea.setText("");
             directionsTextArea.append(miniMap.getShortestPath());
         }
 
@@ -141,16 +144,18 @@ public class Display {
 //            locationButton0.setBounds(190,105,50,30);
 //            locationButton0.addActionListener(new LocationDisplayListener(locationButton0.getText()));
 //
-            JButton locationButton3 = new JButton("3");
-            JButton locationButton4 = new JButton("4");
-            JButton locationButton5 = new JButton("5");
-
-            locationButton3.setBounds(405, 130, 50, 30);
-            locationButton4.setBounds(480, 105, 50, 30);
-
-
-            add(locationButton3);
-            add(locationButton4);
+//            JButton locationButton9 = new JButton("9");
+//            JButton locationButton10 = new JButton("10");
+//            JButton locationButton11 = new JButton("11");
+//
+//            locationButton9.setBounds(480, 260, 50, 30);
+//            locationButton10.setBounds(240, 320, 50, 30);
+//            locationButton11.setBounds(300, 320, 50, 30);
+//
+//
+//            add(locationButton9);
+//            add(locationButton10);
+//            add(locationButton11);
 
             for(int i = 0 ; i < locationButtons.length; i++) {
                 locationButtons[i] = new JButton(Integer.toString(i));

@@ -132,4 +132,29 @@ public class MiniMap {
     public Object getLocationData(int index){
         return currentMap.getVertex(index);
     }
+
+    @Override
+    public String toString(){
+        StringBuilder map = new StringBuilder();
+        map.append("Source: " + this.source + "\n");
+        map.append("Destination: " + this.destination + "\n");
+        map.append(this.currentMap.toString());
+        return map.toString();
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if(other == null || !(other instanceof MiniMap)){
+            return false;
+        } else{
+            MiniMap temp = (MiniMap) other;
+            return this.source == temp.source && this.destination == temp.destination &&
+                    this.currentMap.toString().equals(temp.toString());
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        return Integer.hashCode(this.source) + Integer.hashCode(this.destination) + this.currentMap.toString().hashCode();
+    }
 }

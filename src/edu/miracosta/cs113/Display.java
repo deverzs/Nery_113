@@ -15,6 +15,11 @@ public class Display {
     public static final int MAP_DISPLAY_HEIGHT = 564;
     public static final String MAP_DISPLAY_FILE = "displaymap2.jpg";
 
+    public static final int LOCATION_DISPLAY_WIDTH = 400;
+    public static final int LOCATION_DISPLAY_HEIGHT = 300;
+    public static final int LOCATION_TEXTAREA_NUM_ROWS = 5;
+    public static final int LOCATION_TEXTAREA_NUM_COLUMNS = 30;
+
     public static final int DIRECTIONS_DISPLAY_WIDTH = 400;
     public static final int DIRECTIONS_DISPLAY_HEIGHT = 300;
     public static final int DIRECTIONS_NUM_COLUMNS = 30;
@@ -38,6 +43,12 @@ public class Display {
 
     //The Map Location Buttons
     protected JButton locationButton1;
+
+    //Location Frame's Components
+    protected JTextArea locationTextArea;
+
+    //Location Frame object to be used by actionListener
+    protected LocationDisplayFrame locationDisplayFrame;
 
     //inner class that creates the frame that the user will use to give their starting
     //and ending destination.
@@ -114,25 +125,51 @@ public class Display {
                 System.out.println(e.toString());
             }
 
-            locationButton1 = new JButton("A");
+            locationButton1 = new JButton("0");
             locationButton1.setBounds(190,105,50,30);
+            locationButton1.addActionListener(new LocationDisplayListener());
             add(locationButton1);
 
         }
     }
 
-    //inner class to display the shortest path directions to user
-    private class DisplayDirectionsPanel extends JFrame {
+    private class LocationDisplayListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            locationDisplayFrame = new LocationDisplayFrame();
+            locationDisplayFrame.setVisible(true);
+        }
+    }
 
-        public DisplayDirectionsPanel() {
+    //inner class to display location information
+    private class LocationDisplayFrame extends JFrame {
+        public LocationDisplayFrame() {
+            super("LOCATION INFORMATION");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(LOCATION_DISPLAY_WIDTH, LOCATION_DISPLAY_HEIGHT);
+
+            locationTextArea = new JTextArea(LOCATION_TEXTAREA_NUM_ROWS, LOCATION_TEXTAREA_NUM_COLUMNS);
+            locationTextArea.setEditable(false);
+            JScrollPane scrollPane = new JScrollPane(locationTextArea);
+
+            add(scrollPane);
+
+        }
+    }
+
+    //inner class to display the shortest path directions to user
+    private class DirectionsDisplayFrame extends JFrame {
+
+        public DirectionsDisplayFrame() {
             super("Shortest Path Directions");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setSize(DIRECTIONS_DISPLAY_WIDTH, DIRECTIONS_DISPLAY_HEIGHT);
 
             directionsTextArea =new JTextArea(DIRECTIONS_NUM_ROWS, DIRECTIONS_NUM_COLUMNS);
+            directionsTextArea.setEditable(false);
             JScrollPane scrollPane = new JScrollPane(directionsTextArea);
 
-            this.add(scrollPane);
+            add(scrollPane);
         }
     }
     /**
@@ -141,10 +178,10 @@ public class Display {
     public Display() {
         MapDisplayFrame map = new MapDisplayFrame();
         InputFrame inputFrame = new InputFrame();
-        DisplayDirectionsPanel directionsPanel = new DisplayDirectionsPanel();
+        DirectionsDisplayFrame directionsPanel = new DirectionsDisplayFrame();
         map.setVisible(true);
-       // inputFrame.setVisible(true);
-        //directionsPanel.setVisible(true);
+        inputFrame.setVisible(true);
+        directionsPanel.setVisible(true);
     }
 
     /**

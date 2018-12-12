@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 /**
- * Dijkstra's Algorithm Class
+ * DijkstraAlgorithm.java
  * Contains the algorithm for the Graph. Based on the code from Koffman and Wolfgang
  *
  * @author Oscar Fernandez, Zsuzsanna Dianovics, Jacob Valenzuela

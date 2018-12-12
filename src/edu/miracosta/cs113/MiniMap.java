@@ -6,6 +6,7 @@ package edu.miracosta.cs113;
  * @author Oscar Fernandez, Zsuzsanna Dianovics, Jacob Valenzuela
  * @version 1.0
  */
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class MiniMap {
     //Constants
     public static final String MAP_FILE = "localMap.txt";
     public static final boolean DEFAULT_DIRECTED_CHOICE = true;
+    public static final int DEFAULT_LOCATIONS = 20;
 
     //Instance Variables
     private int source;
@@ -131,6 +133,39 @@ public class MiniMap {
      */
     public Object getLocationData(int index){
         return currentMap.getVertex(index);
+    }
+
+    /**
+     * Fills paramter array with data from parameter file
+     * @param locations Array to be filled
+     * @param infoFile File with index for array and data for that index
+     */
+    public static void readLocationData(String[] locations, String infoFile){
+        Scanner inFile;
+        int index;
+
+        try {
+            inFile = new Scanner(new FileInputStream(infoFile));
+            while(inFile.hasNextLine()){
+                index = Integer.parseInt(inFile.nextLine());
+                locations[index] = inFile.nextLine() + "\n";
+                locations[index] += inFile.nextLine() + "\n";
+            }
+            inFile.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Fills array of size DEFAULT_LOCATIONS with data from parameter file
+     * @param infoFile File with index and info of a location
+     * @return String array with parameter data
+     */
+    public static String[] readLocationData(String infoFile){
+        String[] locations = new String[DEFAULT_LOCATIONS];
+        MiniMap.readLocationData(locations, infoFile);
+        return locations;
     }
 
     @Override

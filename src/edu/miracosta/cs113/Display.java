@@ -30,8 +30,7 @@ public class Display {
     public static final int INPUT_TEXTFIELD_SIZE = 5;
     //String Array that will connect location with a description
     //.... still needs work
-    public static final String[] stringArr = { "zero","one","two","three","four", "five", "six","seven","eight", "nine", "ten", "eleven", "fourteen",
-            "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twenty-one"};
+    public static final String[] stringArr = MiniMap.readLocationData("locationInformation.txt");
 
     //InputFrame's variable
     protected JTextField start;

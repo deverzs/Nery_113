@@ -52,4 +52,14 @@ public class MiniMapTest {
         assertEquals(expected, test.getShortestPath(2));
     }
 
+    @Test
+    public void testReadLocationData(){
+        String[] locations = new String[20];
+
+        MiniMap.readLocationData(locations, "locationInformation.txt");
+
+        for(String loc : locations){
+            System.out.println(loc);
+        }
+    }
 }

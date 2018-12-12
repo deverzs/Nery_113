@@ -6,7 +6,7 @@ package edu.miracosta.cs113;
  * @author Oscar Fernandez, Zsuzsanna Dianovics, Jacob Valenzuela
  * @version 1.0
  */
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

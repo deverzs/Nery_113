@@ -38,7 +38,7 @@ based on weight and the run time for that is about the same ss for other compara
 algorithms.]
 
 ## Screenshot(s):
-[insert image(s) here to show main use/screen of program]
+![Program Screenshot](image.png)
 
 ## UML Class+Relationship Diagram:
 ![untitled diagram 5](https://user-images.githubusercontent.com/31230409/49847391-b2148600-fd84-11e8-9923-d24610fffda2.jpg)

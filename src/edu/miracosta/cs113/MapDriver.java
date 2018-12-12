@@ -8,6 +8,16 @@ package edu.miracosta.cs113;
  */
 
 public class MapDriver {
+    /*
+     * ALGORITHM:
+     *
+     * INSTANTIATE display to output GUI
+     * GET starting and ending position from user
+     *  OUTPUT directions with fastest route
+     * IF user clicks button
+     *  OUTPUT location information
+     * END OF PROGRAM
+     */
     public static void main (String[] args) {
         Display display = new Display() ;
     } // end main

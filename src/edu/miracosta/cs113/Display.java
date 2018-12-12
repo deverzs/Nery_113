@@ -143,8 +143,8 @@ public class Display {
         InputFrame inputFrame = new InputFrame();
         DisplayDirectionsPanel directionsPanel = new DisplayDirectionsPanel();
         map.setVisible(true);
-       // inputFrame.setVisible(true);
-        //directionsPanel.setVisible(true);
+        inputFrame.setVisible(true);
+        directionsPanel.setVisible(true);
     }
 
     /**

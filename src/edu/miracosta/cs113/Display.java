@@ -125,7 +125,7 @@ public class Display {
                 System.out.println(e.toString());
             }
 
-            locationButton1 = new JButton("A");
+            locationButton1 = new JButton("0");
             locationButton1.setBounds(190,105,50,30);
             locationButton1.addActionListener(new LocationDisplayListener());
             add(locationButton1);

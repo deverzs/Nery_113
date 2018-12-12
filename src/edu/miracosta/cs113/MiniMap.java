@@ -149,7 +149,7 @@ public class MiniMap {
         } else{
             MiniMap temp = (MiniMap) other;
             return this.source == temp.source && this.destination == temp.destination &&
-                    this.currentMap.toString().equals(temp.toString());
+                    this.currentMap.toString().equals(temp.currentMap.toString());
         }
     }
 

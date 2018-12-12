@@ -81,6 +81,11 @@ public class DijkstraAlgorithm {
 
     }
 
+    /**
+     * Finds the shortest distance to the end from the beginning
+     * @param end where to head
+     * @return the directions to get there
+     */
     public String findFromToEnd(int end) {
         StringBuilder sb = new StringBuilder() ;
         ArrayList paths = new ArrayList() ;
@@ -99,6 +104,7 @@ public class DijkstraAlgorithm {
 
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder() ;
         for (int i : pred) {

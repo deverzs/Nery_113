@@ -13,7 +13,7 @@ public class Display {
     //Map Display Constants
     public static final int MAP_DISPLAY_WIDTH = 616;
     public static final int MAP_DISPLAY_HEIGHT = 564;
-    public static final String MAP_DISPLAY_FILE = "displaymap3.jpg";
+    public static final String MAP_DISPLAY_FILE = "displayMap4.jpg";
     //Location Display Constants
     public static final int LOCATION_DISPLAY_WIDTH = 400;
     public static final int LOCATION_DISPLAY_HEIGHT = 300;
@@ -30,8 +30,8 @@ public class Display {
     public static final int INPUT_TEXTFIELD_SIZE = 5;
     //String Array that will connect location with a description
     //.... still needs work
-    public static final String[] stringArr = { "one","two","three","4","5", "6", "7","8","9", "10", "11", "12", "13",
-            "14", "15", "16", "17", "18", "19", "20"};
+    public static final String[] stringArr = { "zero","one","two","three","four", "five", "six","seven","eight", "nine", "ten", "eleven", "fourteen",
+            "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twenty-one"};
 
     //InputFrame's variable
     protected JTextField start;
@@ -144,18 +144,33 @@ public class Display {
 //            locationButton0.setBounds(190,105,50,30);
 //            locationButton0.addActionListener(new LocationDisplayListener(locationButton0.getText()));
 //
-//            JButton locationButton9 = new JButton("9");
-//            JButton locationButton10 = new JButton("10");
-//            JButton locationButton11 = new JButton("11");
-//
-//            locationButton9.setBounds(480, 260, 50, 30);
-//            locationButton10.setBounds(240, 320, 50, 30);
-//            locationButton11.setBounds(300, 320, 50, 30);
-//
-//
-//            add(locationButton9);
-//            add(locationButton10);
-//            add(locationButton11);
+            JButton locationButton12 = new JButton("12");
+            JButton locationButton13 = new JButton("13");
+            JButton locationButton14 = new JButton("14");
+            JButton locationButton15 = new JButton("15");
+            JButton locationButton16 = new JButton("16");
+            JButton locationButton17 = new JButton("17");
+            JButton locationButton18 = new JButton("18");
+            JButton locationButton19 = new JButton("19");
+
+            locationButton12.setBounds(300, 365, 50, 30);
+            locationButton13.setBounds(405, 335, 50, 30);
+            locationButton14.setBounds(480, 340, 50, 30);
+            locationButton15.setBounds(370, 405, 50, 30);
+            locationButton16.setBounds(480, 410, 50, 30);
+            locationButton17.setBounds(370, 470, 50, 30);
+            locationButton18.setBounds(460, 505, 50, 30);
+            locationButton19.setBounds(530, 475, 50, 30);
+
+
+            add(locationButton12);
+            add(locationButton13);
+            add(locationButton14);
+            add(locationButton15);
+            add(locationButton16);
+            add(locationButton17);
+            add(locationButton18);
+            add(locationButton19);
 
             for(int i = 0 ; i < locationButtons.length; i++) {
                 locationButtons[i] = new JButton(Integer.toString(i));

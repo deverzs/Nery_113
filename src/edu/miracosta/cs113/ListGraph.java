@@ -49,11 +49,11 @@ public class ListGraph<T> implements Graph {
      * Sets current vertices to parameter values
      * @param vertices Array with vertices object for graph
      */
-    public void setVertices(T[] vertices){
+    public void setVertices(Object[] vertices){
         if(vertices.length > this.numVertices){
             throw new IllegalArgumentException("Number of vertices greater than capacity");
         } else{
-            this.vertices = vertices;
+            this.vertices = (T[]) vertices;
         }
     }
 
